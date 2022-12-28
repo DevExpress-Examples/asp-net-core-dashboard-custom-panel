@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Support" />
+  <DataSources>
+    <JsonDataSource Name="Support" RootElement="Employee" ComponentName="jsonDataSource1" ConnectionName="jsonSupport">
+      <Source SourceType="DevExpress.DataAccess.Json.UriJsonSource" />
+      <Schema>
+        <Node Name="root" Type="System.Object" Selected="true" NodeType="Object">
+          <Node Name="Employee" Selected="true" NodeType="Array">
+            <Node Name="Employee" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="IssueType" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="ProductName" Type="System.String" Selected="true" NodeType="Property" />
+            <Node Name="ResolvedTime (Sum)" Type="System.Nullable`1[System.Int64]" Selected="true" NodeType="Property" />
+          </Node>
+        </Node>
+      </Schema>
+    </JsonDataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Bug Count" DataSource="jsonDataSource1">
+      <DataItems>
+        <Measure DataMember="ResolvedTime (Sum)" DefaultId="DataItem0" />
+        <Dimension DataMember="Employee" DefaultId="DataItem1" />
+        <Dimension DataMember="IssueType" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="StackedBar">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="chartDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

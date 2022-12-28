@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = null;
+}
+
+@using DevExpress.AspNetCore
+@using DevExpress.DashboardWeb
+@using DevExpress.DashboardAspNetCore
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/css/site.min.css" rel="stylesheet" />
+    <script src="~/js/site.min.js"></script>
+    <script>
+        function onSelectionChanged(e) {
+            dashboard1.option("dashboardId", e.component.option("selectedItemKeys")[0]);
+        }
+    </script>
+</head>
+<body>
+    <div style="display: flex; height: 650px; border: 1px solid #ccc">
+      <div style="width: 250px; border-right: 1px solid #ccc">
+        @(Html.DevExtreme().List()
+            .DataSource(d => d.Mvc()
+                .Key("ID")
+                .LoadAction("Dashboards")
+                .Controller("DashboardPanel")
+            )
+            .KeyExpr("productID")
+            .DisplayExpr("productName")
+            .SearchExpr("productName")
+            .SearchEnabled(true)
+            .SelectionMode(ListSelectionMode.Single)
+            .PageLoadMode(ListPageLoadMode.ScrollBottom)
+            .OnSelectionChanged("onSelectionChanged")
+        )
+      </div>
+      <div style="flex-grow: 1">
+        @(Html.DevExpress().Dashboard("dashboard1")
+            .ControllerName("DefaultDashboard")
+            .Width("100%").Height("100%")
+            .LoadDefaultDashboard(false)
+        )
+      </div>
+    </div>
+</body>
+</html>
