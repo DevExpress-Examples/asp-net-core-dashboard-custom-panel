@@ -3,9 +3,9 @@
   "name": "asp.net",
   "private": true,
   "devDependencies": {
-    "devextreme-dist": "25.1-stable",
-    "@devexpress/analytics-core": "25.1-stable",
-    "devexpress-dashboard": "25.1-stable",
+    "devextreme-dist": "26.1.5",
+    "@devexpress/analytics-core": "26.1.5",
+    "devexpress-dashboard": "26.1.5",
     "devextreme-aspnet-data": "^3.0.0"
   }
 }
